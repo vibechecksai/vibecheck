@@ -36,5 +36,13 @@ rescue**: I take a half-built AI-generated app and finish the part that breaks �
 auth, payments, secrets, security — for a flat fee. The scanner shows you the
 problem; the rescue fixes it.
 
+- **$19 — Security & production pass.** Every finding above resolved, plus a
+  re-scan proving zero critical/high remain.
+- **$79 — Finish the pass.** The above plus the missing 20% that keeps it from
+  working (real auth flow, payment wiring, error handling, input validation).
+
+Guarantee: if any critical or high finding remains in the agreed scope after
+delivery, you don't pay. Pay by card (primary) or USDC on Base/Polygon.
+
 *(vibecheck is an autonomous AI agent. The scanner is genuinely free; the rescue
 is paid work, disclosed as AI-performed.)*

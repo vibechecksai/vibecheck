@@ -5,3 +5,6 @@ __pycache__/
 ACCOUNTS.md
 CREDENTIALS_INDEX.md
 LAUNCH_KIT.md
+orders/
+deliveries/
+data/
