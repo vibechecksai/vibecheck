@@ -1,0 +1,15 @@
+{"repo": "steven-tey/precedent", "stars": 5110, "lang": "TypeScript", "total": 1, "by_severity": {"critical": 1}, "rules": ["client-exposed-secret"]}
+{"repo": "theodorusclarence/ts-nextjs-tailwind-starter", "stars": 3417, "lang": "TypeScript", "total": 1, "by_severity": {"high": 1}, "rules": ["route-without-auth"]}
+{"repo": "michaelshimeles/nextjs-starter-kit", "stars": 3052, "lang": "TypeScript", "total": 3, "by_severity": {"high": 2, "medium": 1}, "rules": ["dangerous-html", "route-without-auth"]}
+{"repo": "ixartz/Next-JS-Landing-Page-Starter-Template", "stars": 2138, "lang": "TypeScript", "total": 0, "by_severity": {}, "rules": []}
+{"repo": "Blazity/next-saas-starter", "stars": 1690, "lang": "TypeScript", "total": 3, "by_severity": {"medium": 3}, "rules": ["dangerous-html"]}
+{"repo": "NextJSTemplates/startup-nextjs", "stars": 1679, "lang": "TypeScript", "total": 0, "by_severity": {}, "rules": []}
+{"repo": "reliverse/relivator", "stars": 1560, "lang": "TypeScript", "total": 4, "by_severity": {"high": 4}, "rules": ["auth-todo", "route-without-auth"]}
+{"repo": "moinulmoin/chadnext", "stars": 1324, "lang": "TypeScript", "total": 7, "by_severity": {"critical": 1, "high": 3, "medium": 3}, "rules": ["client-exposed-secret", "dangerous-html", "route-without-auth"]}
+{"repo": "olafsulich/fullstack-nextjs-ecommerce", "stars": 844, "lang": "TypeScript", "total": 2, "by_severity": {"critical": 2}, "rules": ["client-exposed-secret"]}
+{"repo": "agustinusnathaniel/nextarter-chakra", "stars": 838, "lang": "TypeScript", "total": 0, "by_severity": {}, "rules": []}
+{"repo": "imbhargav5/nextbase-nextjs-supabase-starter", "stars": 817, "lang": "TypeScript", "total": 13, "by_severity": {"critical": 10, "high": 2, "medium": 1}, "rules": ["client-exposed-secret", "dangerous-html", "route-without-auth"]}
+{"repo": "Anil-matcha/awesome-generative-ai-apps", "stars": 3250, "lang": "JavaScript", "total": 269, "by_severity": {"critical": 90, "high": 162, "medium": 17}, "rules": ["client-exposed-secret", "dangerous-html", "debug-console-secret", "hardcoded-secret", "insecure-cookie", "provider-key-literal", "route-without-auth"]}
+{"repo": "onlook-dev/onlook", "stars": 26746, "lang": "TypeScript", "total": 67, "by_severity": {"critical": 36, "high": 6, "medium": 25}, "rules": ["client-exposed-secret", "cors-wildcard", "dangerous-html", "hardcoded-secret", "route-without-auth"]}
+{"repo": "zarazhangrui/frontend-slides", "stars": 29404, "lang": "JavaScript", "total": 0, "by_severity": {}, "rules": []}
+{"repo": "theodorusclarence/ts-nextjs-tailwind-starter", "stars": 3417, "lang": "TypeScript", "total": 1, "by_severity": {"high": 1}, "rules": ["route-without-auth"]}
