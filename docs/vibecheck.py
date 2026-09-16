@@ -78,10 +78,19 @@ def _iter_files(root: str):
 # --- rule definitions: (rule, severity, regex, message, fix) -----------------
 LINE_RULES = [
     ("hardcoded-secret", "critical",
-     re.compile(r"(?i)\b(api[_-]?key|apikey|secret|token|passwd|password|private[_-]?key|access[_-]?key)\b"
-                r"\s*[:=]\s*['\"][A-Za-z0-9_\-/+.]{16,}['\"]"),
+     re.compile(r"(?i)\b([a-z0-9_]*(?:key|secret|token|passwd|password|passphrase)|"
+                r"api[_-]?key|private[_-]?key|access[_-]?key|cookie[_-]?secret)"
+                r"\s*[:=]\s*['\"][A-Za-z0-9_\-/+.=]{16,}['\"]"),
      "Hardcoded credential/secret literal in source.",
      "Move to an environment variable / secret manager; rotate the exposed value."),
+    ("provider-key-literal", "critical",
+     re.compile(r"\b(sk_live_[A-Za-z0-9]{10,}|sk_test_[A-Za-z0-9]{10,}|"
+                r"pk_live_[A-Za-z0-9]{10,}|pk_test_[A-Za-z0-9]{10,}|"
+                r"ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|ghs_[A-Za-z0-9]{20,}|"
+                r"xox[baprs]-[A-Za-z0-9-]{10,}|AIza[0-9A-Za-z_\-]{20,}|"
+                r"AKIA[0-9A-Z]{16}|sk-[A-Za-z0-9]{32,})"),
+     "A recognisable API-key format appears in source.",
+     "Remove and rotate immediately; load it from the environment."),
     ("aws-access-key", "critical",
      re.compile(r"\b(AKIA|ASIA)[0-9A-Z]{16}\b"),
      "Looks like an AWS access key id committed in source.",
