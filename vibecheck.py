@@ -14,6 +14,8 @@ Usage:
 
 Exit codes: 0 = no findings at/above the fail threshold, 1 = findings, 2 = error.
 """
+# vibecheck:ignore-file — the rule definitions below necessarily contain the
+# patterns they detect, so the scanner does not scan itself.
 from __future__ import annotations
 
 import argparse
@@ -179,10 +181,16 @@ def scan_file(path: str, root: str):
         text = open(path, encoding="utf-8", errors="replace").read()
     except OSError:
         return []
+    if "vibecheck:ignore-file" in text:
+        return []
     findings = []
     lines = text.splitlines()
     for rule, sev, rx, msg, fix in LINE_RULES:
         for i, ln in enumerate(lines, 1):
+            if "vibecheck:ignore" in ln:
+                continue
+            if i > 1 and "vibecheck:ignore" in lines[i - 2]:
+                continue
             if rx.search(ln):
                 if rule == "conn-string-credentials" and _placeholder_conn_string(ln):
                     continue
