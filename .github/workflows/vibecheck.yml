@@ -13,6 +13,6 @@ jobs:
         with:
           python-version: '3.x'
       - name: Scan for production failures
-        run: python3 vibecheck.py . --fail-on critical || true
-      - name: Fail on critical findings
-        run: python3 vibecheck.py . --fail-on critical
+        uses: ./
+        with:
+          fail-on: critical

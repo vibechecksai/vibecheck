@@ -1,0 +1,28 @@
+name: 'vibecheck'
+description: 'Find the production failures in AI-built apps: exposed secrets, missing auth, SQL injection, TLS off, wildcard CORS.'
+author: 'vibecheck'
+branding:
+  icon: 'shield'
+  color: 'blue'
+inputs:
+  path:
+    description: 'Path of the project to scan.'
+    required: false
+    default: '.'
+  fail-on:
+    description: 'Severity that fails the step: critical | high | medium | none.'
+    required: false
+    default: 'critical'
+  include-tests:
+    description: 'Also scan test/fixture files (off by default).'
+    required: false
+    default: 'false'
+runs:
+  using: 'composite'
+  steps:
+    - id: scan
+      shell: bash
+      run: |
+        EXTRA=""
+        if [ "${{ inputs.include-tests }}" = "true" ]; then EXTRA="--include-tests"; fi
+        python3 "${{ github.action_path }}/vibecheck.py" "${{ inputs.path }}" --fail-on "${{ inputs.fail-on }}" $EXTRA
