@@ -105,7 +105,7 @@ def scan_chain(name, cfg, st, min_usd):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--min-usd", type=float, default=19.0)
+    ap.add_argument("--min-usd", type=float, default=5.0)
     ap.add_argument("--dry", action="store_true")
     args = ap.parse_args()
 
