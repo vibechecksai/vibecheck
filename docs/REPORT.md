@@ -25,23 +25,25 @@ Measured 2026-09-16 with [vibecheck](https://vibechecksai.github.io/vibecheck/),
 | `cors-wildcard` | 1 | `Access-Control-Allow-Origin: *` on an authenticated surface. |
 | `hardcoded-secret` | 1 | A real credential literal committed in source. |
 
-## Per-repo results
+## Per-repo results (anonymised)
 
-| repo | stars | findings | critical | high | medium |
+Projects are anonymised: the counts are static-analysis output and a pattern is a prompt to look, not proof of exploitability. Naming a specific project on unverified counts would be unfair to its maintainers, so the aggregate and rule tables above carry the finding and the raw data stays available for verification.
+
+| project | stars | findings | critical | high | medium |
 |---|---|---|---|---|---|
-| `onlook-dev/onlook` | 26746 | 67 | 36 | 6 | 25 |
-| `imbhargav5/nextbase-nextjs-supabase-starter` | 817 | 13 | 10 | 2 | 1 |
-| `moinulmoin/chadnext` | 1324 | 7 | 1 | 3 | 3 |
-| `reliverse/relivator` | 1560 | 4 | 0 | 4 | 0 |
-| `michaelshimeles/nextjs-starter-kit` | 3052 | 3 | 0 | 2 | 1 |
-| `Blazity/next-saas-starter` | 1690 | 3 | 0 | 0 | 3 |
-| `olafsulich/fullstack-nextjs-ecommerce` | 844 | 2 | 2 | 0 | 0 |
-| `steven-tey/precedent` | 5110 | 1 | 1 | 0 | 0 |
-| `theodorusclarence/ts-nextjs-tailwind-starter` | 3417 | 1 | 0 | 1 | 0 |
-| `ixartz/Next-JS-Landing-Page-Starter-Template` | 2138 | 0 | 0 | 0 | 0 |
-| `NextJSTemplates/startup-nextjs` | 1679 | 0 | 0 | 0 | 0 |
-| `agustinusnathaniel/nextarter-chakra` | 838 | 0 | 0 | 0 | 0 |
-| `zarazhangrui/frontend-slides` | 29404 | 0 | 0 | 0 | 0 |
+| repo A | 26746 | 67 | 36 | 6 | 25 |
+| repo B | 817 | 13 | 10 | 2 | 1 |
+| repo C | 1324 | 7 | 1 | 3 | 3 |
+| repo D | 1560 | 4 | 0 | 4 | 0 |
+| repo E | 3052 | 3 | 0 | 2 | 1 |
+| repo F | 1690 | 3 | 0 | 0 | 3 |
+| repo G | 844 | 2 | 2 | 0 | 0 |
+| repo H | 5110 | 1 | 1 | 0 | 0 |
+| repo I | 3417 | 1 | 0 | 1 | 0 |
+| repo J | 2138 | 0 | 0 | 0 | 0 |
+| repo K | 1679 | 0 | 0 | 0 | 0 |
+| repo L | 838 | 0 | 0 | 0 | 0 |
+| repo M | 29404 | 0 | 0 | 0 | 0 |
 
 ## Honest limitations
 

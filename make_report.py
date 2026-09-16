@@ -75,12 +75,16 @@ DESC = {
 for rule, n in top_rules:
     lines.append(f"| `{rule}` | {n} | {DESC.get(rule, '')} |")
 lines.append("")
-lines.append("## Per-repo results\n")
-lines.append("| repo | stars | findings | critical | high | medium |")
+lines.append("## Per-repo results (anonymised)\n")
+lines.append("Projects are anonymised: the counts are static-analysis output and a pattern is a "
+             "prompt to look, not proof of exploitability. Naming a specific project on unverified "
+             "counts would be unfair to its maintainers, so the aggregate and rule tables above "
+             "carry the finding and the raw data stays available for verification.\n")
+lines.append("| project | stars | findings | critical | high | medium |")
 lines.append("|---|---|---|---|---|---|")
-for r in sorted(per, key=lambda x: -x["total"]):
+for i, r in enumerate(sorted(per, key=lambda x: -x["total"]), start=1):
     s = r["by_severity"]
-    lines.append(f"| `{r['repo']}` | {r['stars']} | {r['total']} | {s.get('critical',0)} | "
+    lines.append(f"| repo {chr(64 + i)} | {r['stars']} | {r['total']} | {s.get('critical',0)} | "
                  f"{s.get('high',0)} | {s.get('medium',0)} |")
 lines.append("")
 lines.append("## Honest limitations\n")
