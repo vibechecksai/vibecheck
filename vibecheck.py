@@ -150,12 +150,12 @@ ROUTE_MARKER = re.compile(
 
 
 _PLACEHOLDER_USERS = re.compile(
-    r"(?i)(user|username|admin|root|test|foo|bar|your[a-z_]*|changeme|"
+    r"(?i)(user|username|test|foo|bar|your[a-z_]*|changeme|"
     r"password|pass|secret|token|xxx+|name|email|login)")
 _PLACEHOLDER_PW = re.compile(
-    r"(?i)(pass|password|secret|token|changeme|xxx+|redacted|pwd|placeholder)")
+    r"(?i)(pass|password|secret|token|changeme|xxx+|redacted|pwd|placeholder|admin|root|user|test)")
 _EXAMPLE_HOSTS = ("example.", "localhost", "127.0.0.1", "0.0.0.0", ".test",
-                  ".invalid", ".example", "db.internal", "host")
+                  ".invalid", ".example")
 
 
 def _placeholder_conn_string(line: str) -> bool:
