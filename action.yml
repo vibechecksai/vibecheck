@@ -17,12 +17,46 @@ inputs:
     description: 'Also scan test/fixture files (off by default).'
     required: false
     default: 'false'
+  summary:
+    description: 'Write the findings to the GitHub step summary (true | false).'
+    required: false
+    default: 'true'
+  offer-url:
+    description: 'Where a failing scan points for the fixes. Set to an empty string to omit the link.'
+    required: false
+    default: 'https://vibechecksai.github.io/vibecheck/order.html'
+outputs:
+  findings:
+    description: 'Total number of findings.'
+    value: ${{ steps.scan.outputs.findings }}
+  critical:
+    description: 'Number of critical findings.'
+    value: ${{ steps.scan.outputs.critical }}
+  high:
+    description: 'Number of high findings.'
+    value: ${{ steps.scan.outputs.high }}
+  medium:
+    description: 'Number of medium findings.'
+    value: ${{ steps.scan.outputs.medium }}
 runs:
   using: 'composite'
   steps:
     - id: scan
       shell: bash
+      env:
+        VC_PATH: ${{ inputs.path }}
+        VC_FAIL_ON: ${{ inputs.fail-on }}
+        VC_INCLUDE_TESTS: ${{ inputs.include-tests }}
+        VC_SUMMARY: ${{ inputs.summary }}
+        VC_OFFER: ${{ inputs.offer-url }}
       run: |
         EXTRA=""
-        if [ "${{ inputs.include-tests }}" = "true" ]; then EXTRA="--include-tests"; fi
-        python3 "${{ github.action_path }}/vibecheck.py" "${{ inputs.path }}" --fail-on "${{ inputs.fail-on }}" $EXTRA
+        if [ "$VC_INCLUDE_TESTS" = "true" ]; then EXTRA="--include-tests"; fi
+        if [ "$VC_SUMMARY" != "true" ]; then export GITHUB_STEP_SUMMARY=""; fi
+        JSON="$RUNNER_TEMP/vibecheck-findings.json"
+        set +e
+        python3 "${{ github.action_path }}/vibecheck.py" "$VC_PATH" --json $EXTRA > "$JSON"
+        code=$?
+        set -e
+        python3 "${{ github.action_path }}/ci_summary.py" "$JSON" "$VC_OFFER" "$code"
+        exit $code
