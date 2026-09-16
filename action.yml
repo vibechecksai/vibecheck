@@ -1,4 +1,4 @@
-name: 'vibecheck'
+name: 'vibecheck AI app scanner'
 description: 'Find the production failures in AI-built apps: exposed secrets, missing auth, SQL injection, TLS off, wildcard CORS.'
 author: 'vibecheck'
 branding:
