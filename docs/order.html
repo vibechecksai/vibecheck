@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order a vibecheck rescue — fixed, re-scanned, guaranteed</title>
+<meta name="description" content="Pay in USDC on Base, get your AI-built app's production-breaking defects found, fixed, and re-scanned to zero. Flat fee, guaranteed.">
+<style>
+  :root{
+    --bg:#0a0d12; --panel:#0f141b; --panel2:#131a23; --fg:#e8eef6; --mut:#93a1b5;
+    --acc:#4f8cff; --acc2:#7c5cff; --ok:#3fb950; --bd:#1e2733; --bd2:#2a3644;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--acc)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px}
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:.95rem}
+  .brand{font-weight:700;letter-spacing:-.02em}
+  .brand span{color:var(--acc)}
+  .nav a{color:var(--mut);text-decoration:none;margin-left:18px}
+  .nav a:hover{color:var(--fg)}
+  h1{font-size:clamp(1.7rem,4.4vw,2.5rem);line-height:1.15;letter-spacing:-.03em;margin:34px 0 10px;font-weight:800}
+  .lede{color:var(--mut);max-width:60ch;margin:0 0 26px}
+  .step{display:flex;gap:14px;align-items:flex-start;margin:0 0 14px}
+  .num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--panel2);border:1px solid var(--bd2);
+       display:grid;place-items:center;font-size:.85rem;font-weight:700;color:var(--acc)}
+  .step p{margin:0}
+  h2{font-size:1.22rem;letter-spacing:-.02em;margin:34px 0 12px}
+  .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+  .tier{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--bd2);
+        border-radius:16px;padding:20px;cursor:pointer;transition:.15s}
+  .tier:hover{border-color:var(--acc)}
+  .tier.sel{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset,0 10px 30px rgba(79,140,255,.18)}
+  .tier h3{margin:0 0 4px;font-size:1.05rem}
+  .tier .p{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;margin:6px 0 10px}
+  .tier ul{margin:0;padding-left:17px;color:var(--mut);font-size:.9rem}
+  .panel{background:var(--panel);border:1px solid var(--bd2);border-radius:16px;padding:22px;margin:18px 0}
+  .row{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+  .addr{font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;
+        background:#0b0f15;border:1px solid var(--bd);border-radius:10px;padding:12px 14px;flex:1;min-width:260px}
+  .amount{font-size:1.9rem;font-weight:800;letter-spacing:-.03em}
+  button{font:inherit;font-weight:600;padding:11px 18px;border-radius:10px;border:1px solid var(--bd2);
+         background:var(--panel2);color:var(--fg);cursor:pointer;transition:.15s}
+  button:hover{border-color:var(--acc)}
+  button.p{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border:0;
+           box-shadow:0 8px 26px rgba(79,140,255,.25)}
+  .qr{background:#fff;padding:10px;border-radius:12px;width:150px;height:150px;flex:0 0 auto}
+  .qr svg{width:100%;height:100%;display:block}
+  .ok{background:rgba(63,185,80,.08);border:1px solid rgba(63,185,80,.35);border-radius:12px;
+      padding:16px 18px;margin:18px 0}
+  .warn{background:rgba(255,176,32,.07);border:1px solid rgba(255,176,32,.3);border-radius:12px;
+        padding:16px 18px;margin:18px 0;color:#f0d9a8;font-size:.95rem}
+  code{font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+       background:#0b0f15;border:1px solid var(--bd);border-radius:6px;padding:2px 6px}
+  footer{color:var(--mut);font-size:.88rem;padding:40px 0;border-top:1px solid var(--bd);margin-top:40px}
+  .copyed{color:var(--ok)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <div class="brand">vibe<span>check</span></div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="REPORT.md">Scan report</a>
+      <a href="https://github.com/vibechecksai/vibecheck">GitHub</a>
+    </div>
+  </nav>
+
+  <h1>Order a rescue</h1>
+  <p class="lede">Your app's production-breaking defects get found, fixed, and <strong>re-scanned to zero</strong>.
+  Flat fee. If we can't get it to zero, you pay nothing.</p>
+
+  <h2>1. Pick the scope</h2>
+  <div class="tiers" id="tiers">
+    <div class="tier" data-amt="5">
+      <h3>Quick scan</h3>
+      <div class="p">$5</div>
+      <ul>
+        <li>Full scan of one repo</li>
+        <li>Every finding, with file:line and a one-line fix</li>
+        <li>Prioritised by what actually breaks first</li>
+      </ul>
+    </div>
+    <div class="tier sel" data-amt="19">
+      <h3>Rescue</h3>
+      <div class="p">$19</div>
+      <ul>
+        <li>Everything in Quick scan</li>
+        <li><strong>We fix every critical &amp; high finding</strong></li>
+        <li>Re-scan proving zero, delivered as a report</li>
+        <li>Guaranteed: no fix, no fee</li>
+      </ul>
+    </div>
+    <div class="tier" data-amt="79">
+      <h3>Deep</h3>
+      <div class="p">$79</div>
+      <ul>
+        <li>Everything in Rescue</li>
+        <li>Whole repo, not just the broken parts</li>
+        <li>Written review of the 20% still missing</li>
+        <li>Same guarantee</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>2. Pay in USDC on Base</h2>
+  <div class="panel">
+    <div class="row">
+      <div class="qr"><img src="pay-base.svg" alt="Base USDC address QR code" style="width:100%;height:100%"></div>
+      <div style="flex:1;min-width:270px">
+        <div class="amount">$<span id="amt">19</span> <span style="font-size:1rem;color:var(--mut)">USDC</span></div>
+        <p style="color:var(--mut);margin:8px 0 12px;font-size:.95rem">
+          Send <strong>exactly</strong> this amount on the <strong>Base</strong> network to:</p>
+        <div class="addr" id="addr">0x716D17129a5d41D18D8c51eb118ECb0eDe6B76d5</div>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="p" id="copy">Copy address</button>
+          <button id="copyamt">Copy amount</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>Payment is USDC on Base today.</strong> Card checkout isn't wired yet — I won't pretend otherwise.
+    If you need to pay by card, email me and I'll tell you when it's live rather than take your money now.
+  </div>
+
+  <h2>3. Tell me what to fix</h2>
+  <p>After paying, email the <strong>transaction hash</strong> and your <strong>repo URL</strong> (or a zip) to
+  <a href="mailto:gordon-sfa@agentmail.to?subject=vibecheck%20rescue%20order">gordon-sfa@agentmail.to</a>.
+  That's the whole handoff — no account, no form to fight.</p>
+
+  <p><a id="mailto" class="copyed" href="mailto:gordon-sfa@agentmail.to?subject=vibecheck%20rescue%20order">Or click here to open a pre-filled email →</a></p>
+
+  <h2>What happens next</h2>
+  <div class="step"><div class="num">1</div><p>Your payment is detected on-chain automatically (a watcher checks Base continuously).</p></div>
+  <div class="step"><div class="num">2</div><p>The scanner runs on your repo; every critical and high finding is fixed in your code.</p></div>
+  <div class="step"><div class="num">3</div><p>It's re-scanned to prove zero. You get the diff and the before/after counts.</p></div>
+
+  <div class="ok">
+    <strong>The guarantee:</strong> if the re-scan can't reach zero critical/high, you get a full refund to the
+    sending address. No fix, no fee.
+  </div>
+
+  <p style="color:var(--mut);font-size:.93rem">
+    Want to see the scanner first? It's free and open source —
+    <a href="https://github.com/vibechecksai/vibecheck">run it yourself on GitHub</a> before you pay anything.
+  </p>
+
+  <footer>
+    <p>vibecheck · independent, deterministic static analysis for AI-built apps.
+    Evidence: <a href="REPORT.md">101 findings across 13 popular AI-app starter repos</a>.</p>
+  </footer>
+
+</div>
+
+<script>
+  var ADDR = "0x716D17129a5d41D18D8c51eb118ECb0eDe6B76d5";
+  var tiers = document.querySelectorAll(".tier");
+  var amtEl = document.getElementById("amt");
+  var mail = document.getElementById("mailto");
+  function select(t){
+    tiers.forEach(function(x){ x.classList.remove("sel"); });
+    t.classList.add("sel");
+    var a = t.getAttribute("data-amt");
+    amtEl.textContent = a;
+    mail.href = "mailto:gordon-sfa@agentmail.to?subject=" +
+      encodeURIComponent("vibecheck rescue order — $" + a + " USDC") +
+      "&body=" + encodeURIComponent(
+        "Tier: $" + a + "\nTx hash: \nRepo URL (or attach a zip): \nWhat worries you most (optional): \n");
+  }
+  tiers.forEach(function(t){ t.addEventListener("click", function(){ select(t); }); });
+  function copy(text, btn, label){
+    var done = function(){ var o = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(function(){ btn.textContent = o; }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+    } else { fallback(text, done); }
+  }
+  function fallback(text, done){
+    var ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); } catch(e){}
+    document.body.removeChild(ta);
+  }
+  document.getElementById("copy").addEventListener("click", function(){ copy(ADDR, this); });
+  document.getElementById("copyamt").addEventListener("click", function(){ copy(amtEl.textContent, this); });
+  select(document.querySelector(".tier.sel"));
+</script>
+</body>
+</html>
