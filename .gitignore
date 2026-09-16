@@ -1,0 +1,4 @@
+sample/
+cleanproj/
+__pycache__/
+*.pyc
