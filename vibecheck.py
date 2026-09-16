@@ -136,7 +136,7 @@ LINE_RULES = [
      "Unsanitized raw HTML injection point.",
      "Sanitize the HTML (e.g. DOMPurify) or render as text."),
     ("auth-todo", "high",
-     re.compile(r"(?i)(TODO|FIXME|HACK|XXX).{0,40}\b(auth|login|permission|"
+     re.compile(r"(?i)(//|#|/\*|<!--|--)\s*(TODO|FIXME|HACK|XXX).{0,40}\b(auth|login|permission|"
                 r"authoriz|payment|billing|admin|role)"),
      "An unimplemented TODO/FIXME sits on an auth/payment path.",
      "Resolve before shipping; this is exactly the 20% that breaks in prod."),
