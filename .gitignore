@@ -2,3 +2,6 @@ sample/
 cleanproj/
 __pycache__/
 *.pyc
+ACCOUNTS.md
+CREDENTIALS_INDEX.md
+LAUNCH_KIT.md
