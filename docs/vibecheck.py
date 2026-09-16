@@ -34,6 +34,14 @@ SRC_EXT = {".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".py", ".rb", ".go",
            ".toml", ".ini", ".config", ""}
 MAX_BYTES = 2_000_000
 
+# Test/fixture paths are skipped by default: planted "secrets" and example URLs in
+# tests are not real leaks, and flagging them is the fastest way to lose a user's
+# trust. Opt back in with --include-tests.
+TEST_RE = re.compile(
+    r"(^|/)(tests?|spec|specs|__tests__|testdata|fixtures?|mocks?|examples?)(/|$)"
+    r"|\.(test|spec)\.[A-Za-z0-9]+$|(^|/)test_|_test\.(py|go|rb)$")
+INCLUDE_TESTS = False
+
 SEV_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3}
 
 
@@ -132,14 +140,41 @@ AUTH_MARKERS = re.compile(
     r"(?i)\b(getServerSession|getSession|requireAuth|requireUser|isAuthenticated|"
     r"auth\s*\(|verifyToken|jwt\.verify|checkAuth|withAuth|authenticate|"
     r"@login_required|@requires_auth|CurrentUser|Depends\s*\(\s*get_current_user)")
-# Files that look like server route handlers.
-ROUTE_MARKER = re.compile(r"(?i)(export\s+(async\s+)?function\s+(GET|POST|PUT|PATCH|DELETE)"
-                          r"|@(app|router)\.(get|post|put|patch|delete)|"
-                          r"def\s+(get|post|put|patch|delete)\s*\()")
+# Files that look like server route handlers. Must be an actual route shape:
+# Next.js "export async function GET", a framework decorator (@app/@router.route),
+# or Express-style app.get('/path'). A plain "def get(...)" is NOT a route.
+ROUTE_MARKER = re.compile(
+    r"(?i)(export\s+(async\s+)?function\s+(GET|POST|PUT|PATCH|DELETE)\b"
+    r"|@(app|router|api|bp|blueprint|server)\.(get|post|put|patch|delete|route)\b"
+    r"|(app|router|server)\.(get|post|put|patch|delete)\s*\(\s*['\"`]/)")
+
+
+_PLACEHOLDER_USERS = re.compile(
+    r"(?i)(user|username|admin|root|test|foo|bar|your[a-z_]*|changeme|"
+    r"password|pass|secret|token|xxx+|name|email|login)")
+_PLACEHOLDER_PW = re.compile(
+    r"(?i)(pass|password|secret|token|changeme|xxx+|redacted|pwd|placeholder)")
+_EXAMPLE_HOSTS = ("example.", "localhost", "127.0.0.1", "0.0.0.0", ".test",
+                  ".invalid", ".example", "db.internal", "host")
+
+
+def _placeholder_conn_string(line: str) -> bool:
+    """True when a user:pass@host URL is a placeholder/example, not a real leak."""
+    m = re.search(r"://([^/\s:@'\"]+):([^/\s:@'\"]+)@([^/\s:'\"/]+)", line)
+    if not m:
+        return True
+    user, pw, host = m.group(1), m.group(2), m.group(3).lower()
+    if any(h in host for h in _EXAMPLE_HOSTS):
+        return True
+    if _PLACEHOLDER_USERS.fullmatch(user) or _PLACEHOLDER_PW.fullmatch(pw):
+        return True
+    return False
 
 
 def scan_file(path: str, root: str):
     rel = os.path.relpath(path, root)
+    if not INCLUDE_TESTS and TEST_RE.search(rel):
+        return []
     try:
         text = open(path, encoding="utf-8", errors="replace").read()
     except OSError:
@@ -149,6 +184,8 @@ def scan_file(path: str, root: str):
     for rule, sev, rx, msg, fix in LINE_RULES:
         for i, ln in enumerate(lines, 1):
             if rx.search(ln):
+                if rule == "conn-string-credentials" and _placeholder_conn_string(ln):
+                    continue
                 findings.append(Finding(rule, sev, rel, i, msg, fix))
     # route-without-auth heuristic (per file)
     if ROUTE_MARKER.search(text) and not AUTH_MARKERS.search(text):
@@ -195,9 +232,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="vibecheck", description=__doc__)
     ap.add_argument("path", nargs="?", default=".")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--include-tests", action="store_true",
+                    help="also scan test/fixture files (off by default)")
     ap.add_argument("--fail-on", choices=["critical", "high", "medium", "none"],
                     default="critical")
     args = ap.parse_args(argv)
+    global INCLUDE_TESTS
+    INCLUDE_TESTS = args.include_tests
 
     if not os.path.isdir(args.path):
         sys.stderr.write("not a directory: %s\n" % args.path)
